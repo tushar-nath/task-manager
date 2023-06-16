@@ -1,40 +1,38 @@
-// import { Model, DataTypes } from 'sequelize';
-// import { sequelize } from '../config/database';
+import { DataTypes, Model } from "sequelize";
+import { sequelize } from "../config/database";
+import User from "./User"
 
-// class Task extends Model {
-//   public id!: number;
-//   public title!: string;
-//   public description!: string;
-//   public userId!: number;
+export interface TaskAttributes {
+  id: number;
+  title: string;
+  description: string;
+  userId: number;
+}
 
-//   public readonly createdAt!: Date;
-//   public readonly updatedAt!: Date;
-// }
+export interface TaskInstance extends Model<TaskAttributes>, TaskAttributes {}
 
-// Task.init(
-//   {
-//     id: {
-//       type: DataTypes.INTEGER,
-//       autoIncrement: true,
-//       primaryKey: true,
-//     },
-//     title: {
-//       type: DataTypes.STRING,
-//       allowNull: false,
-//     },
-//     description: {
-//       type: DataTypes.TEXT,
-//       allowNull: false,
-//     },
-//     userId: {
-//       type: DataTypes.INTEGER,
-//       allowNull: false,
-//     },
-//   },
-//   {
-//     tableName: 'tasks',
-//     sequelize,
-//   }
-// );
+const Task = sequelize.define<TaskInstance>("Task", {
+  id: {
+    type: DataTypes.INTEGER,
+    autoIncrement: true,
+    primaryKey: true,
+  },
+  title: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
+  description: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
+  userId: {
+    type: DataTypes.INTEGER,
+    allowNull: false,
+  },
+});
 
-// export default Task;
+// Define the associations between User and Task
+User.hasMany(Task, { foreignKey: "userId" });
+Task.belongsTo(User, { foreignKey: "userId" });
+
+export default Task;

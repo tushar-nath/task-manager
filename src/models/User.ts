@@ -1,35 +1,29 @@
-// import { Model, DataTypes } from 'sequelize';
-// import { sequelize } from '../config/database';
+import { DataTypes, Model } from "sequelize";
+import { sequelize } from "../config/database";
 
-// class User extends Model {
-//   public id!: number;
-//   public username!: string;
-//   public password!: string;
+export interface UserAttributes {
+  id?: number;
+  username: string;
+  password: string;
+}
 
-//   public readonly createdAt!: Date;
-//   public readonly updatedAt!: Date;
-// }
+export interface UserInstance extends Model<UserAttributes>, UserAttributes {}
 
-// User.init(
-//   {
-//     id: {
-//       type: DataTypes.INTEGER,
-//       autoIncrement: true,
-//       primaryKey: true,
-//     },
-//     username: {
-//       type: DataTypes.STRING,
-//       allowNull: false,
-//     },
-//     password: {
-//       type: DataTypes.STRING,
-//       allowNull: false,
-//     },
-//   },
-//   {
-//     tableName: 'users',
-//     sequelize,
-//   }
-// );
+const User = sequelize.define<UserInstance>("User", {
+  id: {
+    type: DataTypes.INTEGER,
+    autoIncrement: true,
+    primaryKey: true,
+  },
+  username: {
+    type: DataTypes.STRING,
+    allowNull: false,
+    unique: true,
+  },
+  password: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
+});
 
-// export default User;
+export default User;
