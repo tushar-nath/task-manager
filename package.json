@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "start": "ts-node src/app.ts",
-    "dev": "nodemon src/app.ts"
+    "start": "ts-node src/api/index.ts",
+    "dev": "nodemon src/api/index.ts"
   },
   "author": "",
   "license": "ISC",
