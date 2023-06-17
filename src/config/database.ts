@@ -20,7 +20,7 @@ sequelize
 
 // Sync the models with the database and create tables
 sequelize
-  .sync({ force: true }) // Drop and recreate tables
+  .sync()
   .then(() => {
     console.log("Tables synchronized successfully");
   })
