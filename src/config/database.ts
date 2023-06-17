@@ -18,9 +18,9 @@ sequelize
     console.error("Unable to connect to the database:", error);
   });
 
-// Sync the models with the database and create tables
+// Sync the models with the database and create tables if they don't exist
 sequelize
-  .sync()
+  .sync({ alter: true }) // Add missing columns or modify existing columns
   .then(() => {
     console.log("Tables synchronized successfully");
   })
