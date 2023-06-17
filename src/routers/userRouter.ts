@@ -1,6 +1,6 @@
 import express, { Request, Response } from "express";
 import { Accounts } from "../handlers/userHandler";
-import { createTask } from "../handlers/taskHandler";
+import { Tasks } from "../handlers/taskHandler";
 
 const router = express.Router();
 
@@ -10,10 +10,12 @@ router.get("/healthcheck", (req: Request, res: Response) => {
 });
 
 // User routes
-router.post("/signup", Accounts.signup);
-router.post("/login", Accounts.login);
+router.post("/user/signup", Accounts.signup);
+router.post("/user/login", Accounts.login);
 
 // Task routes
-router.post("/tasks", createTask);
+router.post("/tasks", Tasks.createTask);
+router.get("/tasks", Tasks.getTasksByUser);
+router.delete('/tasks/:taskId', Tasks.deleteTask);
 
 export default router;
