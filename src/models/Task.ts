@@ -3,7 +3,7 @@ import { sequelize } from "../config/database";
 import User from "./User";
 
 export interface TaskAttributes {
-  id: number;
+  id?: number;
   title: string;
   description: string;
   userId: number;
