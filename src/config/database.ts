@@ -1,16 +1,12 @@
 import { Sequelize } from "sequelize";
 
 // Create a new Sequelize instance with your database connection details
-export const sequelize = new Sequelize(
-  "todo-app",
-  "username",
-  "password",
-  {
-    host: "localhost",
-    port: 3306,
-    dialect: "mysql",
-  }
-);
+export const sequelize = new Sequelize("todo_app", "root", "", {
+  host: "localhost",
+  port: 3306,
+  dialect: "mysql",
+  logging: false, // Disable logging SQL statements during table creation
+});
 
 // Test the database connection
 sequelize
@@ -20,4 +16,14 @@ sequelize
   })
   .catch((error) => {
     console.error("Unable to connect to the database:", error);
+  });
+
+// Sync the models with the database and create tables
+sequelize
+  .sync({ force: true }) // Drop and recreate tables
+  .then(() => {
+    console.log("Tables synchronized successfully");
+  })
+  .catch((error) => {
+    console.error("Failed to synchronize tables:", error);
   });
