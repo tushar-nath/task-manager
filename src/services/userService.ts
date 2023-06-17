@@ -20,4 +20,12 @@ export class UserService {
       throw new Error("Failed to authenticate user");
     }
   }
+  static async getUserByUsername(username: string) {
+    try {
+      const user = await User.findOne({ where: { username } });
+      return user ? user.toJSON() : null;
+    } catch (error) {
+      throw new Error("Failed to fetch user by username");
+    }
+  }
 }

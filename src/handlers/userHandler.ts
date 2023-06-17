@@ -5,6 +5,11 @@ export class Accounts {
   static async signup(req: Request, res: Response) {
     const { username, password } = req.body;
     try {
+      const existingUser = await UserService.getUserByUsername(username);
+      if (existingUser) {
+        return res.status(409).json({ error: "Username already exists" });
+      }
+
       const user = await UserService.registerUser(username, password);
       res.status(201).json(user);
     } catch (error) {
