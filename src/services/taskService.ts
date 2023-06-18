@@ -1,4 +1,4 @@
-import Task, { TaskAttributes } from "../models/Task";
+import Task, { TaskAttributes } from "../models/task";
 
 export class TaskService {
   static async createTask(title: string, description: string, userId: number) {
