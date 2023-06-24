@@ -3,9 +3,9 @@ import mysql2 from "mysql2"; // Needed to fix sequelize issues with WebPack
 
 // Create a new Sequelize instance with your database connection details
 export const sequelize = new Sequelize(
-  "sql12626949",
-  "sql12626949",
-  "Y8cUjtdQ56",
+  "sql12628443",
+  "sql12628443",
+  "znfGx6AmgG",
   {
     host: "sql12.freemysqlhosting.net",
     port: 3306,
